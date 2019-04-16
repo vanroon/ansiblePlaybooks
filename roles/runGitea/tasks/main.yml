@@ -7,7 +7,7 @@
 
 - name: copy docker-compose.yml
   copy:
-    src: ../files/docker-compose.yml
+    src: ../files/docker-compose-postgres.yml
     dest: /var/lib/gitea/docker-compose.yml
 
 - name: stop gitea
