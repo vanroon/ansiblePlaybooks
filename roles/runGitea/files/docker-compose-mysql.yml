@@ -5,7 +5,7 @@ networks:
     external: false
 
 volumes:
-  gitea:
+  gitea_mysql:
     driver: local
   mysql:
     driver: local
@@ -25,7 +25,7 @@ services:
     networks:
       - gitea
     volumes:
-      - gitea:/data
+      - gitea_mysql:/data
     ports:
       - "3000:3000"
       - "222:22"
