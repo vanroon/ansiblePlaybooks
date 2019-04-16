@@ -5,9 +5,9 @@ networks:
     external: false
 
 volumes:
-  gitea_postgres:
+  gitea_server:
     driver: local
-  postgres:
+  gitea_db_postgres:
     driver: local
 
 services:
@@ -25,7 +25,7 @@ services:
     networks:
       - gitea
     volumes:
-      - gitea_postgres:/data
+      - gitea_server:/data
     ports:
       - "3000:3000"
       - "222:22"
@@ -42,4 +42,4 @@ services:
     networks:
       - gitea
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - gitea_db_postgres:/var/lib/postgresql/data
