@@ -1,0 +1,22 @@
+# file main.yml
+---
+- name: prep instance
+  hosts: all
+  connection: ssh
+  gather_facts: false
+  become: True
+  tasks:
+    - name: hello
+      file:
+        path: /tmp/foo.bar
+        state: touch
+        mode: 0777
+
+- name: Manage new instances
+  hosts: GCE 
+  connection: ssh
+  become: True
+  roles:
+    - {role: baseConfig, tags: ["install", "baseConfig"] }
+    - {role: installDocker, tags: ["install", "docker"] }
+    - {role: runGitea, tags: ["runGitea", "docker"] }

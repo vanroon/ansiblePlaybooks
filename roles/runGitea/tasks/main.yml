@@ -1,0 +1,23 @@
+---
+# tasks file for runGitea
+- name: work directory
+  file:
+    path: /var/lib/gitea
+    state: directory
+
+- name: copy docker-compose.yml
+  copy:
+    src: ../files/docker-compose.yml
+    dest: /var/lib/gitea/docker-compose.yml
+
+- name: stop gitea
+  tags: stop-gitea
+  docker_service:
+    project_src: /var/lib/gitea/
+    state: absent
+
+- name: start gitea
+  tags: start-gitea
+  docker_service:
+    project_src: /var/lib/gitea/
+    state: present
